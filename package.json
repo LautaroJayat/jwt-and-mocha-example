@@ -6,8 +6,8 @@
   "scripts": {
     "devTest": "export NODE_ENV=test; nodemon app.js ",
     "dev": "nodemon app.js",
-    "build": "npm install -y",
-    "test": "export NODE_ENV=test;mocha tests/*test.js"
+    "build": "npm install",
+    "test": "export NODE_ENV=test; export SECRET=mySecret; mocha tests/*test.js"
   },
   "author": "",
   "license": "ISC",
