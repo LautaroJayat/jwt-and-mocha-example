@@ -15,10 +15,10 @@ app.use(express.json())
 app.use(require('./routes/users'))
 
 // App init
-app.listen(port, () => {
+const server = app.listen(port, () => {
     console.log('Express listening on', 3000)
 });
 
 
 // Exporting to test
-module.exports = { app };
+module.exports = { app, server };
