@@ -6,6 +6,7 @@
   "scripts": {
     "devTest": "export NODE_ENV=test; nodemon app.js ",
     "dev": "nodemon app.js",
+    "build": "npm install -y",
     "test": "export NODE_ENV=test;mocha tests/*test.js"
   },
   "author": "",
