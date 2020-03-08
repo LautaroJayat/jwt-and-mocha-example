@@ -2,19 +2,30 @@ require('dotenv').config()
 const request = require('supertest');
 const expect = require('expect');
 const { app, server } = require('../app');
-let { saveUsers, users, genToken, cleanToken } = require('./seed/seed');
 const mongoose = require('mongoose');
+let { saveUsers, users, genToken, cleanToken } = require('./seed/seed');
 
 
 beforeEach(saveUsers);
 
 after(() => {
-    mongoose.connection.close();
+   
+    //Closing Mongoose conection
+    mongoose.connection.close((err) => {
+        if (err) {
+            console.log(err)
+        }
+        console.log('Done, closing Mongoose connection');
+    });
+
+    //Closing our Express server 
     server.close((err) => {
         if (err) {
             console.log(err)
         }
-        else { console.log('done') }
+
+        console.log('Done, closing Express server')
+
     })
 })
 describe('GET "/"', () => {
@@ -209,7 +220,7 @@ describe('POST "/login"', () => {
             })
             .end(done)
     })
-    /*it('should return 401 when using an expired token and no other info', function (done) {
+    it('should return 401 when using an expired token and no other info', function (done) {
         this.timeout(20000);
 
         genToken()
@@ -227,7 +238,7 @@ describe('POST "/login"', () => {
             .finally(() => cleanToken())
             .catch(err => console.log(err))
 
-    })*/
+    })
 
 
 })
@@ -285,7 +296,7 @@ describe('GET "/user/user-one"', () => {
 
     })
 
-    /*it('should return 401 when using an expired token', function (done) {
+    it('should return 401 when using an expired token', function (done) {
         this.timeout(20000);
 
         genToken()
@@ -301,7 +312,7 @@ describe('GET "/user/user-one"', () => {
             })
             .finally(() => cleanToken())
             .catch(err => console.log(err))
-    });*/
+    });
 
 })
 
