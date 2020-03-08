@@ -7,7 +7,7 @@
     "devTest": "export NODE_ENV=test; nodemon app.js ",
     "dev": "nodemon app.js",
     "build": "npm install",
-    "test": "export NODE_ENV=test; export SECRET=mySecret; mocha tests/*test.js"
+    "test": "export NODE_ENV=test; export SECRET=mySecret2; mocha tests/*test.js"
   },
   "author": "",
   "license": "ISC",
